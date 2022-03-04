@@ -27,4 +27,8 @@ public class Student {
         this.dob = dob;
         this.email = email;
     }
+
+    public void addCourse(Course c) {
+        this.follows.add(c);
+    }
 }
