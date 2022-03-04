@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class DataService {
@@ -61,5 +62,12 @@ public class DataService {
 
         student.addCourse(course);
         return this.repository.save(student);
+    }
+
+    public Set<Course> findCoursesForStudent(Long st) throws Exception {
+        Optional<Student> result = this.repository.findById(st);
+        Student student = result.orElseThrow( () -> new Exception() );
+
+        return student.getFollows();
     }
 }

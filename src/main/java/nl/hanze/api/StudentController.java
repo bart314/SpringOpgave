@@ -12,17 +12,27 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController()
 @RequestMapping(path="api/v1/student")
 public class StudentController {
-    private DataService dataService;
+    private final DataService dataService;
 
     @Autowired
     public StudentController(DataService dataService) {
         this.dataService = dataService;
     }
-    
+
+    @GetMapping("{student_id}/course/")
+    public Set<Course> findCourse(@PathVariable("student_id") Long student_id) {
+        try {
+            return this.dataService.findCoursesForStudent(student_id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 
     @GetMapping("enroll/{student}/{course}")
