@@ -1,25 +1,34 @@
 package nl.hanze.models;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
 public class Course {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    Long id;
-    String courseName;
+    private Long id;
+    private String courseName;
 
     @ManyToMany
-    List<Student> following;
-
-
+    private List<Student> following;
+    public Course() {}
     public Course(String courseName) {
         this.courseName = courseName;
+    }
+
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public List<Student> getFollowing() {
+        return following;
     }
 }
