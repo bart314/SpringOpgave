@@ -35,7 +35,7 @@ public class StudentController {
 
 
 
-    @GetMapping("enroll/{student}/{course}")
+    @PutMapping("enroll/{student}/{course}")
     public Student addCourseToStudent(
             @PathVariable("student") Long student_id,
             @PathVariable("course") Long course_id
