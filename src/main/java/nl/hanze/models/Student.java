@@ -16,6 +16,8 @@ public class Student {
     @ManyToMany
     private Set<Course> follows;
 
+    public Student() {}
+
     public Student(String name, LocalDate dob, String email) {
         this.name = name;
         this.dob = dob;
